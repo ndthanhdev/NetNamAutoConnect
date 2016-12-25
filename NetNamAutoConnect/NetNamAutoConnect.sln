@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetNamServices", "NetNamServices\NetNamServices.csproj", "{EBE51430-2E9E-40B9-8163-DD468A6C5911}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetNamAutoConnect", "NetNamAutoConnect\NetNamAutoConnect.csproj", "{48A2EBB3-F54D-4146-9E92-E10790CE1D90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,26 @@ Global
 		{EBE51430-2E9E-40B9-8163-DD468A6C5911}.Release|x64.Build.0 = Release|x64
 		{EBE51430-2E9E-40B9-8163-DD468A6C5911}.Release|x86.ActiveCfg = Release|x86
 		{EBE51430-2E9E-40B9-8163-DD468A6C5911}.Release|x86.Build.0 = Release|x86
+		{48A2EBB3-F54D-4146-9E92-E10790CE1D90}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{48A2EBB3-F54D-4146-9E92-E10790CE1D90}.Debug|ARM.ActiveCfg = Debug|ARM
+		{48A2EBB3-F54D-4146-9E92-E10790CE1D90}.Debug|ARM.Build.0 = Debug|ARM
+		{48A2EBB3-F54D-4146-9E92-E10790CE1D90}.Debug|ARM.Deploy.0 = Debug|ARM
+		{48A2EBB3-F54D-4146-9E92-E10790CE1D90}.Debug|x64.ActiveCfg = Debug|x64
+		{48A2EBB3-F54D-4146-9E92-E10790CE1D90}.Debug|x64.Build.0 = Debug|x64
+		{48A2EBB3-F54D-4146-9E92-E10790CE1D90}.Debug|x64.Deploy.0 = Debug|x64
+		{48A2EBB3-F54D-4146-9E92-E10790CE1D90}.Debug|x86.ActiveCfg = Debug|x86
+		{48A2EBB3-F54D-4146-9E92-E10790CE1D90}.Debug|x86.Build.0 = Debug|x86
+		{48A2EBB3-F54D-4146-9E92-E10790CE1D90}.Debug|x86.Deploy.0 = Debug|x86
+		{48A2EBB3-F54D-4146-9E92-E10790CE1D90}.Release|Any CPU.ActiveCfg = Release|x86
+		{48A2EBB3-F54D-4146-9E92-E10790CE1D90}.Release|ARM.ActiveCfg = Release|ARM
+		{48A2EBB3-F54D-4146-9E92-E10790CE1D90}.Release|ARM.Build.0 = Release|ARM
+		{48A2EBB3-F54D-4146-9E92-E10790CE1D90}.Release|ARM.Deploy.0 = Release|ARM
+		{48A2EBB3-F54D-4146-9E92-E10790CE1D90}.Release|x64.ActiveCfg = Release|x64
+		{48A2EBB3-F54D-4146-9E92-E10790CE1D90}.Release|x64.Build.0 = Release|x64
+		{48A2EBB3-F54D-4146-9E92-E10790CE1D90}.Release|x64.Deploy.0 = Release|x64
+		{48A2EBB3-F54D-4146-9E92-E10790CE1D90}.Release|x86.ActiveCfg = Release|x86
+		{48A2EBB3-F54D-4146-9E92-E10790CE1D90}.Release|x86.Build.0 = Release|x86
+		{48A2EBB3-F54D-4146-9E92-E10790CE1D90}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
