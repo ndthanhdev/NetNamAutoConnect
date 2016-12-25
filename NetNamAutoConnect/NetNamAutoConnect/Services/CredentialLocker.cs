@@ -28,7 +28,7 @@ namespace NetNamAutoConnect.Services
             RESOURCE_NAME, username, password));
         }
 
-        public static PasswordCredential RetRetrieving()
+        public static PasswordCredential Retrieving()
         {
             PasswordCredential credential = null;
             var vault = new PasswordVault();

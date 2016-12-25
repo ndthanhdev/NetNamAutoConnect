@@ -2,12 +2,46 @@
     x:Class="NetNamAutoConnect.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:NetNamAutoConnect"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:NetNamAutoConnect"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" VerticalAlignment="Center">
+            <TextBox
+                x:Name="_tbUsername"
+                IsEnabled="False"
+                PlaceholderText="Username" />
+            <PasswordBox
+                x:Name="_pbPassword"
+                IsEnabled="False"
+                PlaceholderText="Password" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button
+                    x:Name="_btnLogout"
+                    Grid.Column="0"
+                    HorizontalAlignment="Center"
+                    Content="Đăng xuất" Click="_btnLogout_Click" />
 
+                <Button
+                    x:Name="_btnLogin"
+                    Grid.Column="2"
+                    HorizontalAlignment="Center"
+                    Click="_btnLogin_Click"
+                    Content="Đăng nhập" />
+            </Grid>
+        </StackPanel>
     </Grid>
 </Page>
