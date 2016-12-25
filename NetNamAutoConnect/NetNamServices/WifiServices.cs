@@ -21,11 +21,12 @@ namespace NetNamServices
                     new KeyValuePair<string,string>("username",username),
                     new KeyValuePair<string, string>("password",password)
                 });
-                await client.PostAsync(LOGIN_URI, content);
+                var ssdd= await client.PostAsync(LOGIN_URI, content);
+                var s = await ssdd.Content.ReadAsStringAsync();
             }
         }
 
-        public static async Task Logout(string username, string password)
+        public static async Task Logout()
         {
             await Task.Yield();
             using (HttpClient client = new HttpClient())

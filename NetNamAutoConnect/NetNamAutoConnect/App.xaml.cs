@@ -31,6 +31,8 @@ namespace NetNamAutoConnect
             this.InitializeComponent();
             this.Suspending += OnSuspending;
             //NetNamServices.WifiServices.Login("m70-006675@internet", "958825").Wait();
+            //NetNamServices.WifiServices.Logout().Wait();
+            Services.CredentialLocker.Save("123", "321");
         }
 
         /// <summary>
