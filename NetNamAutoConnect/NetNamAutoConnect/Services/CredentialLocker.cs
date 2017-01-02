@@ -24,8 +24,13 @@ namespace NetNamAutoConnect.Services
                 }
             }
             catch { }
-            vault.Add(new PasswordCredential(
-            RESOURCE_NAME, username, password));
+            try
+            {
+                vault.Add(new PasswordCredential(
+                    RESOURCE_NAME, username, password));
+            }
+            catch { }
+
         }
 
         public static PasswordCredential Retrieving()

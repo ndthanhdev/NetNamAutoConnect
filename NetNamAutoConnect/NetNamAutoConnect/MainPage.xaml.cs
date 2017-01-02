@@ -1,4 +1,5 @@
-﻿using NetNamServices;
+﻿using NetNamAutoConnect.ViewModels;
+using NetNamServices;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -16,12 +17,17 @@ namespace NetNamAutoConnect
         public MainPage()
         {
             this.InitializeComponent();
+            this.ViewModel = new MainPageViewModel();
         }
+
+        public MainPageViewModel ViewModel { get; set; }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            LoadCredential();
+            //LoadCredential();
+            this.Focus(FocusState.Programmatic);
+            
         }
 
         private void _btnLogin_Click(object sender, RoutedEventArgs e)

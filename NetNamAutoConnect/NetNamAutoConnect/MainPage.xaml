@@ -2,46 +2,84 @@
     x:Class="NetNamAutoConnect.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:NetNamAutoConnect"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
+    <Page.Resources>
+        <converters:BoolToObjectConverter
+            x:Key="inverseBool"
+            FalseValue="True"
+            TrueValue="False" />
+    </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*" />
-            <RowDefinition Height="3*" />
-            <RowDefinition Height="3*" />
+            <RowDefinition Height="6*" />
             <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="1" VerticalAlignment="Center">
+        <!--  Main Content  -->
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="64" />
+                <RowDefinition Height="64" />
+                <RowDefinition Height="64" />
+                <RowDefinition />
+                <RowDefinition Height="64" />
+            </Grid.RowDefinitions>
+
             <TextBox
                 x:Name="_tbUsername"
-                IsEnabled="False"
-                PlaceholderText="Username" />
+                Margin="32,16,32,16"
+                IsEnabled="{x:Bind ViewModel.IsStarted, Converter={StaticResource inverseBool}, Mode=OneWay}"
+                PlaceholderText="Username"
+                Text="{x:Bind ViewModel.UserName}" />
+
             <PasswordBox
                 x:Name="_pbPassword"
-                IsEnabled="False"
+                Grid.Row="1"
+                Margin="32,16,32,16"
+                IsEnabled="{x:Bind ViewModel.IsStarted, Converter={StaticResource inverseBool}, Mode=OneWay}"
+                Password="{x:Bind ViewModel.Password}"
                 PlaceholderText="Password" />
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Button
-                    x:Name="_btnLogout"
-                    Grid.Column="0"
-                    HorizontalAlignment="Center"
-                    Content="Đăng xuất" Click="_btnLogout_Click" />
 
-                <Button
-                    x:Name="_btnLogin"
-                    Grid.Column="2"
-                    HorizontalAlignment="Center"
-                    Click="_btnLogin_Click"
-                    Content="Đăng nhập" />
-            </Grid>
+            <ToggleButton
+                x:Name="_tgbSetState"
+                Grid.Row="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Command="{x:Bind ViewModel.TurnOnCommand}"
+                Content="Turning on auto login"
+                IsChecked="{x:Bind ViewModel.IsStarted, Mode=OneWay}"
+                IsEnabled="{x:Bind ViewModel.IsStarting, Converter={StaticResource inverseBool}, Mode=OneWay}" />
+
+            <Button
+                x:Name="_btnLogout"
+                Grid.Row="3"
+                HorizontalAlignment="Center"
+                Background="Red"
+                Command="{x:Bind ViewModel.LogoutCommand}"
+                Content="Đăng xuất"
+                IsEnabled="{x:Bind ViewModel.IsLogingOut, Converter={StaticResource inverseBool}, Mode=OneWay}" />
+
+            <Button
+                x:Name="_btnLogin"
+                Grid.Row="4"
+                HorizontalAlignment="Center"
+                Command="{x:Bind ViewModel.LoginCommand}"
+                Content="Đăng nhập"
+                IsEnabled="{x:Bind ViewModel.IsLogingIn, Converter={StaticResource inverseBool}, Mode=OneWay}" />
+        </Grid>
+        <StackPanel
+            Grid.Row="2"
+            Margin="8"
+            VerticalAlignment="Bottom">
+            <HyperlinkButton HorizontalAlignment="Center" Content="Help" />
+            <HyperlinkButton HorizontalAlignment="Center" Content="About" />
+            <TextBlock HorizontalAlignment="Right" Text="2017" />
         </StackPanel>
     </Grid>
 </Page>

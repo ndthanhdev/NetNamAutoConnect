@@ -13,25 +13,36 @@ namespace NetNamServices
 
         public static async Task Login(string username, string password)
         {
-            await Task.Yield();
-            using (HttpClient client = new HttpClient())
+            try
             {
-                FormUrlEncodedContent content = new FormUrlEncodedContent(new[]
+                await Task.Yield();
+                using (HttpClient client = new HttpClient())
                 {
-                    new KeyValuePair<string,string>("username",username),
-                    new KeyValuePair<string, string>("password",password)
-                });
-                var ssdd= await client.PostAsync(LOGIN_URI, content);
-                var s = await ssdd.Content.ReadAsStringAsync();
+                    FormUrlEncodedContent content = new FormUrlEncodedContent(new[]
+                    {
+                        new KeyValuePair<string,string>("username",username),
+                        new KeyValuePair<string, string>("password",password),
+                    });
+                    await client.PostAsync(LOGIN_URI, content);
+                }
+            }
+            catch (Exception)
+            {
             }
         }
 
         public static async Task Logout()
         {
-            await Task.Yield();
-            using (HttpClient client = new HttpClient())
+            try
             {
-                await client.GetAsync(LOGOUT_URI);
+                await Task.Yield();
+                using (HttpClient client = new HttpClient())
+                {
+                    await client.GetAsync(LOGOUT_URI);
+                }
+            }
+            catch (Exception)
+            {
             }
         }
     }
