@@ -36,14 +36,14 @@
                 Margin="32,16,32,16"
                 IsEnabled="{x:Bind ViewModel.IsStarted, Converter={StaticResource inverseBool}, Mode=OneWay}"
                 PlaceholderText="Username"
-                Text="{x:Bind ViewModel.UserName}" />
+                Text="{x:Bind ViewModel.UserName, Mode=TwoWay}" />
 
             <PasswordBox
                 x:Name="_pbPassword"
                 Grid.Row="1"
                 Margin="32,16,32,16"
                 IsEnabled="{x:Bind ViewModel.IsStarted, Converter={StaticResource inverseBool}, Mode=OneWay}"
-                Password="{x:Bind ViewModel.Password}"
+                Password="{x:Bind ViewModel.Password, Mode=TwoWay}"
                 PlaceholderText="Password" />
 
             <ToggleButton

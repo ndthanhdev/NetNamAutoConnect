@@ -6,6 +6,8 @@ using Windows.Security.Credentials;
 
 namespace NetNamAutoConnect.ViewModels
 {
+    // TODO: Pop toast
+    // TODO: Show password
     public class MainPageViewModel : BindableBase
     {
         private bool _isLogingin;
@@ -70,9 +72,9 @@ namespace NetNamAutoConnect.ViewModels
             try
             {
                 IsStarting = true;
-                var oldState = IsStarted;
                 IsStarted = true;
-                await Task.Delay(2000);
+                var oldState = false; /// TODO: Get state 
+                await Task.Delay(2000);/// TODO: Remove this line
                 if (oldState)
                 {
                     //unregister
@@ -82,6 +84,9 @@ namespace NetNamAutoConnect.ViewModels
                     //register
                 }
                 //isStarted = getstate
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+                InnerLogin();
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             }
             finally
             {
@@ -112,6 +117,7 @@ namespace NetNamAutoConnect.ViewModels
         {
             await Task.Yield();
             // TODO: load state of background task
+            IsStarted = true;
         }
 
         private async Task InnerLogin()
@@ -122,7 +128,6 @@ namespace NetNamAutoConnect.ViewModels
                 IsLogingIn = true;
                 await InnerSaveCredential();
                 await WifiServices.Login(UserName, Password);
-                await Task.Delay(2000);
             }
             finally
             {
@@ -153,6 +158,7 @@ namespace NetNamAutoConnect.ViewModels
         private async Task OnInitializing()
         {
             await Task.Yield();
+            await Task.Delay(5000);
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             InnerLoadState();
             InnerLoadCredential();
