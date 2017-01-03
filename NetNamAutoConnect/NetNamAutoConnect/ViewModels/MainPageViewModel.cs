@@ -7,6 +7,7 @@ using Windows.Security.Credentials;
 namespace NetNamAutoConnect.ViewModels
 {
     // TODO: Pop toast
+    // TODO: show remind use time
     // TODO: Show password
     public class MainPageViewModel : BindableBase
     {
@@ -16,6 +17,7 @@ namespace NetNamAutoConnect.ViewModels
         private bool _isStarting;
         private string _password;
         private string _userName;
+
 
         public MainPageViewModel()
         {
@@ -117,7 +119,7 @@ namespace NetNamAutoConnect.ViewModels
         {
             await Task.Yield();
             // TODO: load state of background task
-            IsStarted = true;
+            //IsStarted = true;
         }
 
         private async Task InnerLogin()
@@ -158,7 +160,6 @@ namespace NetNamAutoConnect.ViewModels
         private async Task OnInitializing()
         {
             await Task.Yield();
-            await Task.Delay(5000);
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             InnerLoadState();
             InnerLoadCredential();

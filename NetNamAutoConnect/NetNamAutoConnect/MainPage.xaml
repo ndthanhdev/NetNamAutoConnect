@@ -4,82 +4,107 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:NetNamAutoConnect"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:myconverters="using:NetNamAutoConnect.Converters"
+    x:Name="page"
     mc:Ignorable="d">
     <Page.Resources>
         <converters:BoolToObjectConverter
             x:Key="inverseBool"
             FalseValue="True"
             TrueValue="False" />
+        <myconverters:GreaterThanZero x:Key="greaterThanZero" />
     </Page.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="6*" />
-            <RowDefinition Height="2*" />
-        </Grid.RowDefinitions>
-        <!--  Main Content  -->
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="64" />
-                <RowDefinition Height="64" />
-                <RowDefinition Height="64" />
-                <RowDefinition />
-                <RowDefinition Height="64" />
-            </Grid.RowDefinitions>
 
-            <TextBox
-                x:Name="_tbUsername"
-                Margin="32,16,32,16"
-                IsEnabled="{x:Bind ViewModel.IsStarted, Converter={StaticResource inverseBool}, Mode=OneWay}"
-                PlaceholderText="Username"
-                Text="{x:Bind ViewModel.UserName, Mode=TwoWay}" />
+    <Grid x:Name="mainGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Interactivity:Interaction.Behaviors>
+            <Core:EventTriggerBehavior EventName="SizeChanged" SourceObject="{Binding ElementName=mainGrid}">
+                <Core:ChangePropertyAction PropertyName="Width" TargetObject="{Binding ElementName=mainBlade}" Value="{Binding ActualWidth, ElementName=mainGrid, Mode=OneWay}" />
+            </Core:EventTriggerBehavior>
+        </Interactivity:Interaction.Behaviors>
 
-            <PasswordBox
-                x:Name="_pbPassword"
-                Grid.Row="1"
-                Margin="32,16,32,16"
-                IsEnabled="{x:Bind ViewModel.IsStarted, Converter={StaticResource inverseBool}, Mode=OneWay}"
-                Password="{x:Bind ViewModel.Password, Mode=TwoWay}"
-                PlaceholderText="Password" />
+        <controls:BladeView
+            x:Name="bladeView"
+            Margin="12"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+            <controls:BladeItem
+                x:Name="mainBlade"
+                TitleBarVisibility="Collapsed">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="6*" />
+                        <RowDefinition Height="2*" />
+                    </Grid.RowDefinitions>
+                    <!--  Main Content  -->
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="64" />
+                            <RowDefinition Height="64" />
+                            <RowDefinition Height="64" />
+                            <RowDefinition />
+                            <RowDefinition Height="64" />
+                        </Grid.RowDefinitions>
 
-            <ToggleButton
-                x:Name="_tgbSetState"
-                Grid.Row="2"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Command="{x:Bind ViewModel.TurnOnCommand}"
-                Content="Turning on auto login"
-                IsChecked="{x:Bind ViewModel.IsStarted, Mode=OneWay}"
-                IsEnabled="{x:Bind ViewModel.IsStarting, Converter={StaticResource inverseBool}, Mode=OneWay}" />
+                        <TextBox
+                            x:Name="_tbUsername"
+                            Margin="32,16,32,16"
+                            IsEnabled="{x:Bind ViewModel.IsStarted, Converter={StaticResource inverseBool}, Mode=OneWay}"
+                            PlaceholderText="Username"
+                            Text="{x:Bind ViewModel.UserName, Mode=TwoWay}" />
 
-            <Button
-                x:Name="_btnLogout"
-                Grid.Row="3"
-                HorizontalAlignment="Center"
-                Background="Red"
-                Command="{x:Bind ViewModel.LogoutCommand}"
-                Content="Đăng xuất"
-                IsEnabled="{x:Bind ViewModel.IsLogingOut, Converter={StaticResource inverseBool}, Mode=OneWay}" />
+                        <PasswordBox
+                            x:Name="_pbPassword"
+                            Grid.Row="1"
+                            Margin="32,16,32,16"
+                            IsEnabled="{x:Bind ViewModel.IsStarted, Converter={StaticResource inverseBool}, Mode=OneWay}"
+                            Password="{x:Bind ViewModel.Password, Mode=TwoWay}"
+                            PlaceholderText="Password" />
 
-            <Button
-                x:Name="_btnLogin"
-                Grid.Row="4"
-                HorizontalAlignment="Center"
-                Command="{x:Bind ViewModel.LoginCommand}"
-                Content="Đăng nhập"
-                IsEnabled="{x:Bind ViewModel.IsLogingIn, Converter={StaticResource inverseBool}, Mode=OneWay}" />
-        </Grid>
-        <StackPanel
-            Grid.Row="2"
-            Margin="8"
-            VerticalAlignment="Bottom">
-            <HyperlinkButton HorizontalAlignment="Center" Content="Help" />
-            <HyperlinkButton HorizontalAlignment="Center" Content="About" />
-            <TextBlock HorizontalAlignment="Right" Text="2017" />
-        </StackPanel>
+                        <ToggleButton
+                            x:Name="_tgbSetState"
+                            Grid.Row="2"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Command="{x:Bind ViewModel.TurnOnCommand}"
+                            Content="Turning on auto login"
+                            IsChecked="{x:Bind ViewModel.IsStarted, Mode=OneWay}"
+                            IsEnabled="{x:Bind ViewModel.IsStarting, Converter={StaticResource inverseBool}, Mode=OneWay}" />
+
+                        <Button
+                            x:Name="_btnLogout"
+                            Grid.Row="3"
+                            HorizontalAlignment="Center"
+                            Background="Red"
+                            Command="{x:Bind ViewModel.LogoutCommand}"
+                            Content="Đăng xuất"
+                            IsEnabled="{x:Bind ViewModel.IsLogingOut, Converter={StaticResource inverseBool}, Mode=OneWay}" />
+
+                        <Button
+                            x:Name="_btnLogin"
+                            Grid.Row="4"
+                            HorizontalAlignment="Center"
+                            Command="{x:Bind ViewModel.LoginCommand}"
+                            Content="Đăng nhập"
+                            IsEnabled="{x:Bind ViewModel.IsLogingIn, Converter={StaticResource inverseBool}, Mode=OneWay}" />
+                    </Grid>
+                    <StackPanel
+                        Grid.Row="2"
+                        Margin="8"
+                        VerticalAlignment="Bottom">
+                        <HyperlinkButton HorizontalAlignment="Center" Content="Help" />
+                        <HyperlinkButton HorizontalAlignment="Center" Content="About" />
+                        <TextBlock HorizontalAlignment="Right" Text="2017" />
+                    </StackPanel>
+                </Grid>
+            </controls:BladeItem>
+            <controls:BladeItem Title="Help" />
+            <controls:BladeItem Title="About" />
+        </controls:BladeView>
     </Grid>
 </Page>
