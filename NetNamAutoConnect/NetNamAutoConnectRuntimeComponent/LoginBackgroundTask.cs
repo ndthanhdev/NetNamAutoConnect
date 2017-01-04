@@ -11,13 +11,18 @@ namespace NetNamAutoConnectRuntimeComponent
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
             _deferral = taskInstance.GetDeferral();
+
             await Task.Yield();
 
-            var credential = CredentialLocker.Retrieving();
-
-            await WifiServices.Login(credential.UserName, credential.Password);
-
-            await ToastServices.PopLoggedInToast();
+            if (await WifiServices.IsConnectWithWifiNetNam() && !(await WifiServices.IsAuthenticated()))
+            {
+                var credential = CredentialLocker.Retrieving();
+                await WifiServices.Login(credential.UserName, credential.Password);
+                if (await WifiServices.IsAuthenticated())
+                {
+                    await ToastServices.PopToast(ToastServices.GenerateLoggedInToastContent());
+                }
+            }
 
             _deferral.Complete();
         }

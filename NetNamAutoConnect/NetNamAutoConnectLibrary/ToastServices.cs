@@ -10,15 +10,14 @@ namespace NetNamAutoConnectLibrary
 {
     public static class ToastServices
     {
-        public static async Task PopLoggedInToast()
+        public static async Task PopToast(ToastContent content)
         {
             await Task.Yield();
-            var content = InnerGenerateLoggedInToastContent();
             var xml = content.GetXml();
             ToastNotificationManager.CreateToastNotifier().Show(new ToastNotification(xml));
         }
 
-        private static ToastContent InnerGenerateLoggedInToastContent()
+        public static ToastContent GenerateLoggedInToastContent()
         {
             return new ToastContent()
             {
@@ -35,12 +34,13 @@ namespace NetNamAutoConnectLibrary
                             },
                             new AdaptiveText()
                             {
-                                Text = "NetNamAutoConnect sent login request."
+                                Text = "You are logged in."
                             },
                         }
                     }
                 }
             };
         }
+
     }
 }
