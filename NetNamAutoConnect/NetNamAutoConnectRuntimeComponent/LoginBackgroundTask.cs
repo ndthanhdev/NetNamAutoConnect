@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using NetNamAutoConnectLibrary.Services;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 
 namespace NetNamAutoConnectRuntimeComponent
@@ -11,12 +12,10 @@ namespace NetNamAutoConnectRuntimeComponent
         {
             _deferral = taskInstance.GetDeferral();
             await Task.Yield();
-            //
-            // TODO: Insert code to start one or more asynchronous methods using the
-            //       await keyword, for example:
-            //
-            // await ExampleMethodAsync();
-            //
+
+            var credential = CredentialLocker.Retrieving();
+
+            await WifiServices.Login(credential.UserName, credential.Password);
 
             _deferral.Complete();
         }

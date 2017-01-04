@@ -9,6 +9,7 @@ namespace NetNamAutoConnect.ViewModels
     // TODO: Tile for disconnect
     // TODO: show remind use time
     // TODO: Show password
+    ///TODO: Using BitFlag to detect busy
     public partial class MainPageViewModel : BindableBase
     {
         private bool _isLogingin;
@@ -17,7 +18,6 @@ namespace NetNamAutoConnect.ViewModels
         private bool _isStarting;
         private string _password;
         private string _userName;
-
 
         public MainPageViewModel()
         {
@@ -68,36 +68,6 @@ namespace NetNamAutoConnect.ViewModels
             set { Set(ref _password, value); }
         }
 
-        public DelegateCommand TurnOnCommand => new DelegateCommand(async () =>
-        {
-            await Task.Yield();
-            try
-            {
-                IsStarting = true;
-                IsStarted = true;
-                var oldState = false; /// TODO: Get state 
-                await Task.Delay(2000);/// TODO: Remove this line
-                if (oldState)
-                {
-                    //unregister
-                }
-                else
-                {
-                    //register
-                }
-                //isStarted = getstate
-#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-                InnerLogin();
-#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-            }
-            finally
-            {
-                IsStarting = false;
-            }
-        }, () => !IsStarting);
-
-        ///TODO: Using BitFlag to detect busy
-
         public string UserName
         {
             get { return _userName; }
@@ -118,8 +88,8 @@ namespace NetNamAutoConnect.ViewModels
         private async Task InnerLoadState()
         {
             await Task.Yield();
-            // TODO: load state of background task
-            //IsStarted = true;
+            // load state of background task
+            IsStarted = IsLoginBackgroundTaskRegistered();
         }
 
         private async Task InnerLogin()
