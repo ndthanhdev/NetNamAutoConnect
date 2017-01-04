@@ -10,7 +10,7 @@
     xmlns:local="using:NetNamAutoConnect"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:myconverters="using:NetNamAutoConnect.Converters"
-    x:Name="page"
+    x:Name="_page"
     mc:Ignorable="d">
     <Page.Resources>
         <converters:BoolToObjectConverter
@@ -20,27 +20,16 @@
         <myconverters:GreaterThanZero x:Key="greaterThanZero" />
     </Page.Resources>
 
-    <Grid x:Name="mainGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Interactivity:Interaction.Behaviors>
-            <Core:EventTriggerBehavior EventName="SizeChanged" SourceObject="{Binding ElementName=mainGrid}">
-                <Core:ChangePropertyAction PropertyName="Width" TargetObject="{Binding ElementName=mainBlade}" Value="{Binding ActualWidth, ElementName=mainGrid, Mode=OneWay}" />
-            </Core:EventTriggerBehavior>
-        </Interactivity:Interaction.Behaviors>
-
-        <controls:BladeView
-            x:Name="bladeView"
-            Margin="12"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch">
-            <controls:BladeItem
-                x:Name="mainBlade"
-                TitleBarVisibility="Collapsed">
+    <Grid x:Name="_mainGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Pivot>
+            <PivotItem Header="Connect">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*" />
                         <RowDefinition Height="6*" />
                         <RowDefinition Height="2*" />
                     </Grid.RowDefinitions>
+
                     <!--  Main Content  -->
                     <Grid Grid.Row="1">
                         <Grid.RowDefinitions>
@@ -102,9 +91,20 @@
                         <TextBlock HorizontalAlignment="Right" Text="2017" />
                     </StackPanel>
                 </Grid>
+
+            </PivotItem>
+        </Pivot>
+        <!--<controls:BladeView
+            x:Name="bladeView"
+            Margin="12"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+            <controls:BladeItem
+                x:Name="mainBlade"
+                TitleBarVisibility="Collapsed">
             </controls:BladeItem>
             <controls:BladeItem Title="Help" />
             <controls:BladeItem Title="About" />
-        </controls:BladeView>
+        </controls:BladeView>-->
     </Grid>
 </Page>
