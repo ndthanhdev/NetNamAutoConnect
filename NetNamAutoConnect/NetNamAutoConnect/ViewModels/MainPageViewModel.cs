@@ -1,5 +1,5 @@
 ﻿using NetNamAutoConnect.ViewModels.Base;
-using NetNamAutoConnectLibrary.Services;
+using NetNamAutoConnectLibrary;
 using System.Threading.Tasks;
 using Windows.Security.Credentials;
 

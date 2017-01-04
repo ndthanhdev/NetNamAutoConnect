@@ -10,7 +10,7 @@ using Windows.Storage.Streams;
 using Windows.Web.Http;
 using Windows.Web.Http.Headers;
 
-namespace NetNamAutoConnectLibrary.Services
+namespace NetNamAutoConnectLibrary
 {
     class HttpJsonContent : IHttpContent
     {

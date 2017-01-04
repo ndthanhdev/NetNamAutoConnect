@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Windows.Security.Credentials;
 
-namespace NetNamAutoConnectLibrary.Services
+namespace NetNamAutoConnectLibrary
 {
     public class CredentialLocker
     {

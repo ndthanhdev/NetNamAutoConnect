@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.Web.Http;
 
-namespace NetNamAutoConnectLibrary.Services
+namespace NetNamAutoConnectLibrary
 {
     public static class WifiServices
     {

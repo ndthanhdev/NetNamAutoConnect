@@ -1,4 +1,4 @@
-﻿using NetNamAutoConnectLibrary.Services;
+﻿using NetNamAutoConnectLibrary;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 
