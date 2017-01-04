@@ -6,10 +6,11 @@ using Windows.Security.Credentials;
 namespace NetNamAutoConnect.ViewModels
 {
     // TODO: Pop toast
+    // TODO: localization
     // TODO: Tile for disconnect
     // TODO: show remind use time
     // TODO: Show password
-    ///TODO: Using BitFlag to detect busy
+    // TODO: Using BitFlag to detect busy
     public partial class MainPageViewModel : BindableBase
     {
         private bool _isLogingin;
