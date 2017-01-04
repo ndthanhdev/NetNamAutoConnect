@@ -17,6 +17,8 @@ namespace NetNamAutoConnectRuntimeComponent
 
             await WifiServices.Login(credential.UserName, credential.Password);
 
+            await ToastServices.PopLoggedInToast();
+
             _deferral.Complete();
         }
     }

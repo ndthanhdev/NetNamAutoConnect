@@ -47,7 +47,8 @@ namespace NetNamAutoConnect.ViewModels
         private async Task RegisterLoginBackgroundTask()
         {
             await Task.Yield();
-            BackgroundTaskHelper.Register(typeof(NetNamAutoConnectRuntimeComponent.LoginBackgroundTask), new SystemTrigger(SystemTriggerType.NetworkStateChange, false));
+            BackgroundTaskHelper.Register(typeof(NetNamAutoConnectRuntimeComponent.LoginBackgroundTask), 
+                new SystemTrigger(SystemTriggerType.NetworkStateChange, false));
         }
 
         private async Task UnregisterLoginBackgroundTask()
