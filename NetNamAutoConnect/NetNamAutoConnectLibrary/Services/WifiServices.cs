@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Http;
+
 using System.Threading.Tasks;
+using Windows.Web.Http;
 
 namespace NetNamAutoConnectLibrary.Services
 {
@@ -18,12 +19,13 @@ namespace NetNamAutoConnectLibrary.Services
                 await Task.Yield();
                 using (HttpClient client = new HttpClient())
                 {
-                    FormUrlEncodedContent content = new FormUrlEncodedContent(new[]
-                    {
-                        new KeyValuePair<string,string>("username",username),
-                        new KeyValuePair<string, string>("password",password),
-                    });
-                    await client.PostAsync(LOGIN_URI, content);
+                    var httpContent = InnerGenerateHttpContent(username, password);
+#if DEBUG
+                    var debug = await client.PostAsync(LOGIN_URI, httpContent);
+                    var result = await debug.Content.ReadAsStringAsync();
+#else
+                    await client.PostAsync(LOGIN_URI, httpContent);
+#endif
                 }
             }
             catch (Exception)
@@ -44,6 +46,14 @@ namespace NetNamAutoConnectLibrary.Services
             catch (Exception)
             {
             }
+        }
+
+        private static IHttpContent InnerGenerateHttpContent(string username, string password)
+        {
+            Dictionary<string, string> formData = new Dictionary<string, string>();
+            formData.Add("username", username);
+            formData.Add("password", password);
+            return new HttpFormUrlEncodedContent(formData);
         }
     }
 }

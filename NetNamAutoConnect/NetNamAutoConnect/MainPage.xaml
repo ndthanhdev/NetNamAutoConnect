@@ -47,14 +47,29 @@
                                 IsEnabled="{x:Bind ViewModel.IsStarted, Converter={StaticResource inverseBool}, Mode=OneWay}"
                                 PlaceholderText="Username"
                                 Text="{x:Bind ViewModel.UserName, Mode=TwoWay}" />
-
-                            <PasswordBox
-                                x:Name="_pbPassword"
-                                Grid.Row="1"
-                                Margin="32,16,32,16"
-                                IsEnabled="{x:Bind ViewModel.IsStarted, Converter={StaticResource inverseBool}, Mode=OneWay}"
-                                Password="{x:Bind ViewModel.Password, Mode=TwoWay}"
-                                PlaceholderText="Password" />
+                            <Grid Grid.Row="1" Margin="32,16,32,16">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="48" />
+                                </Grid.ColumnDefinitions>
+                                <PasswordBox
+                                    x:Name="_pbPassword"
+                                    HorizontalAlignment="Stretch"
+                                    IsEnabled="{x:Bind ViewModel.IsStarted, Converter={StaticResource inverseBool}, Mode=OneWay}"
+                                    Password="{x:Bind ViewModel.Password, Mode=TwoWay}"
+                                    PasswordRevealMode="Peek"
+                                    PlaceholderText="Password" />
+                                <ToggleButton
+                                    Grid.Column="1"
+                                    Width="48"
+                                    Height="32"
+                                    IsEnabled="False">
+                                    <SymbolIcon
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Symbol="View" />
+                                </ToggleButton>
+                            </Grid>
 
                             <ToggleButton
                                 x:Name="_tgbSetState"
@@ -100,10 +115,13 @@
                         Text="Content" />
                 </PivotItem>
                 <PivotItem Header="About">
-                    <TextBlock
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Text="Content" />
+                    <Grid>
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Text="Content" />
+                        <Button Click="Button_Click" Content="pop" />
+                    </Grid>
                 </PivotItem>
             </Pivot>
         </ScrollViewer>

@@ -1,5 +1,6 @@
-﻿using NetNamAutoConnect.ViewModels;
-using System.Threading.Tasks;
+﻿using Microsoft.Toolkit.Uwp.Notifications;
+using NetNamAutoConnect.ViewModels;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -25,7 +26,42 @@ namespace NetNamAutoConnect
         {
             base.OnNavigatedTo(e);
             this.Focus(FocusState.Programmatic);
-            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var content = new ToastContent()
+            {
+                Scenario = ToastScenario.Default,
+                Visual = new ToastVisual()
+                {
+                    BindingGeneric = new ToastBindingGeneric()
+                    {
+                        Children =
+                        {
+                            new AdaptiveText()
+                            {
+                                Text = "Hello"
+                            },
+                            new AdaptiveText()
+                            {
+                                Text = "Ole"
+                            },
+                        }
+                    }
+                }
+            };
+            var xml = content.GetXml();
+            ToastNotificationManager.CreateToastNotifier().Show(new ToastNotification(xml));
+            //string toastxml = 
+            //    $@"<toast>
+            //        <visual>
+            //            <binding template='ToastGeneric'>
+            //                <text>Hello World</text>
+            //                <text> This is a simple toast message </text>
+            //            </binding>      
+            //        </visual>
+            //    </toast>";
         }
     }
 }

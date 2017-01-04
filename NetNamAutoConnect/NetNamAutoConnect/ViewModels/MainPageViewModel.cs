@@ -9,7 +9,7 @@ namespace NetNamAutoConnect.ViewModels
     // TODO: localization
     // TODO: Tile for disconnect
     // TODO: show remind use time
-    // TODO: Show password
+    // TODO: Show password using UserConsentVerifier.RequestVerificationAsync("xin moi verify");
     // TODO: Using BitFlag to detect busy
     public partial class MainPageViewModel : BindableBase
     {
