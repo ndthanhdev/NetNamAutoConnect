@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EBE51430-2E9E-40B9-8163-DD468A6C5911}</ProjectGuid>
+    <ProjectGuid>{8A6A7F38-E7EA-434E-810C-1C211DE8C49A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NetNamServices</RootNamespace>
-    <AssemblyName>NetNamServices</AssemblyName>
+    <RootNamespace>NetNamAutoConnectLibrary</RootNamespace>
+    <AssemblyName>NetNamAutoConnectLibrary</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
@@ -107,9 +107,10 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WifiServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\NetNamServices.rd.xml" />
+    <Compile Include="Services\CredentialLocker.cs" />
+    <Compile Include="Services\WifiServices.cs" />
+    <EmbeddedResource Include="Properties\NetNamAutoConnectLibrary.rd.xml" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

@@ -1,10 +1,12 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using Windows.Security.Credentials;
 
-namespace NetNamAutoConnect.Services
+namespace NetNamAutoConnectLibrary.Services
 {
-    public static class CredentialLocker
+    public class CredentialLocker
     {
         public const string RESOURCE_NAME = "NetNamAutoConnect";
 
@@ -30,7 +32,6 @@ namespace NetNamAutoConnect.Services
                     RESOURCE_NAME, username, password));
             }
             catch { }
-
         }
 
         public static PasswordCredential Retrieving()

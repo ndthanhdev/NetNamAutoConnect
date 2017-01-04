@@ -1,15 +1,15 @@
-﻿using NetNamAutoConnect.Services;
-using NetNamAutoConnect.ViewModels.Base;
-using NetNamServices;
+﻿using NetNamAutoConnect.ViewModels.Base;
+using NetNamAutoConnectLibrary.Services;
 using System.Threading.Tasks;
 using Windows.Security.Credentials;
 
 namespace NetNamAutoConnect.ViewModels
 {
     // TODO: Pop toast
+    // TODO: Tile for disconnect
     // TODO: show remind use time
     // TODO: Show password
-    public class MainPageViewModel : BindableBase
+    public partial class MainPageViewModel : BindableBase
     {
         private bool _isLogingin;
         private bool _isLogingOut;

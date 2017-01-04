@@ -103,10 +103,10 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\CredentialLocker.cs" />
     <Compile Include="ViewModels\Base\BindableBase.cs" />
     <Compile Include="ViewModels\Base\DelegateCommand{T}.cs" />
     <Compile Include="ViewModels\Base\DelegateCpmmand.cs" />
+    <Compile Include="ViewModels\MainPageViewModel.BackgroundTask.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -136,10 +136,17 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NetNamServices\NetNamServices.csproj">
-      <Project>{ebe51430-2e9e-40b9-8163-dd468a6c5911}</Project>
-      <Name>NetNamServices</Name>
+    <ProjectReference Include="..\NetNamAutoConnectLibrary\NetNamAutoConnectLibrary.csproj">
+      <Project>{8a6a7f38-e7ea-434e-810c-1c211de8c49a}</Project>
+      <Name>NetNamAutoConnectLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NetNamAutoConnectRuntimeComponent\NetNamAutoConnectRuntimeComponent.csproj">
+      <Project>{d514053c-c15d-4afd-a74a-d8c3de250630}</Project>
+      <Name>NetNamAutoConnectRuntimeComponent</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

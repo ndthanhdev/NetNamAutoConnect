@@ -21,90 +21,91 @@
     </Page.Resources>
 
     <Grid x:Name="_mainGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Pivot>
-            <PivotItem Header="Connect">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="2*" />
-                        <RowDefinition Height="6*" />
-                        <RowDefinition Height="2*" />
-                    </Grid.RowDefinitions>
-
-                    <!--  Main Content  -->
-                    <Grid Grid.Row="1">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <Pivot>
+                <PivotItem Header="Connect">
+                    <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="64" />
-                            <RowDefinition Height="64" />
-                            <RowDefinition Height="64" />
-                            <RowDefinition />
-                            <RowDefinition Height="64" />
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="6*" />
+                            <RowDefinition Height="2*" />
                         </Grid.RowDefinitions>
 
-                        <TextBox
-                            x:Name="_tbUsername"
-                            Margin="32,16,32,16"
-                            IsEnabled="{x:Bind ViewModel.IsStarted, Converter={StaticResource inverseBool}, Mode=OneWay}"
-                            PlaceholderText="Username"
-                            Text="{x:Bind ViewModel.UserName, Mode=TwoWay}" />
+                        <!--  Main Content  -->
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="64" />
+                                <RowDefinition Height="64" />
+                                <RowDefinition Height="64" />
+                                <RowDefinition />
+                                <RowDefinition Height="64" />
+                            </Grid.RowDefinitions>
 
-                        <PasswordBox
-                            x:Name="_pbPassword"
-                            Grid.Row="1"
-                            Margin="32,16,32,16"
-                            IsEnabled="{x:Bind ViewModel.IsStarted, Converter={StaticResource inverseBool}, Mode=OneWay}"
-                            Password="{x:Bind ViewModel.Password, Mode=TwoWay}"
-                            PlaceholderText="Password" />
+                            <TextBox
+                                x:Name="_tbUsername"
+                                Margin="32,16,32,16"
+                                IsEnabled="{x:Bind ViewModel.IsStarted, Converter={StaticResource inverseBool}, Mode=OneWay}"
+                                PlaceholderText="Username"
+                                Text="{x:Bind ViewModel.UserName, Mode=TwoWay}" />
 
-                        <ToggleButton
-                            x:Name="_tgbSetState"
+                            <PasswordBox
+                                x:Name="_pbPassword"
+                                Grid.Row="1"
+                                Margin="32,16,32,16"
+                                IsEnabled="{x:Bind ViewModel.IsStarted, Converter={StaticResource inverseBool}, Mode=OneWay}"
+                                Password="{x:Bind ViewModel.Password, Mode=TwoWay}"
+                                PlaceholderText="Password" />
+
+                            <ToggleButton
+                                x:Name="_tgbSetState"
+                                Grid.Row="2"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Command="{x:Bind ViewModel.TurnOnCommand}"
+                                Content="Turn on auto login"
+                                IsChecked="{x:Bind ViewModel.IsStarted, Mode=OneWay}"
+                                IsEnabled="{x:Bind ViewModel.IsStarting, Converter={StaticResource inverseBool}, Mode=OneWay}" />
+
+                            <Button
+                                x:Name="_btnLogout"
+                                Grid.Row="3"
+                                HorizontalAlignment="Center"
+                                Background="Red"
+                                Command="{x:Bind ViewModel.LogoutCommand}"
+                                Content="Đăng xuất"
+                                IsEnabled="{x:Bind ViewModel.IsLogingOut, Converter={StaticResource inverseBool}, Mode=OneWay}" />
+
+                            <Button
+                                x:Name="_btnLogin"
+                                Grid.Row="4"
+                                HorizontalAlignment="Center"
+                                Command="{x:Bind ViewModel.LoginCommand}"
+                                Content="Đăng nhập"
+                                IsEnabled="{x:Bind ViewModel.IsLogingIn, Converter={StaticResource inverseBool}, Mode=OneWay}" />
+                        </Grid>
+                        <StackPanel
                             Grid.Row="2"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Command="{x:Bind ViewModel.TurnOnCommand}"
-                            Content="Turning on auto login"
-                            IsChecked="{x:Bind ViewModel.IsStarted, Mode=OneWay}"
-                            IsEnabled="{x:Bind ViewModel.IsStarting, Converter={StaticResource inverseBool}, Mode=OneWay}" />
-
-                        <Button
-                            x:Name="_btnLogout"
-                            Grid.Row="3"
-                            HorizontalAlignment="Center"
-                            Background="Red"
-                            Command="{x:Bind ViewModel.LogoutCommand}"
-                            Content="Đăng xuất"
-                            IsEnabled="{x:Bind ViewModel.IsLogingOut, Converter={StaticResource inverseBool}, Mode=OneWay}" />
-
-                        <Button
-                            x:Name="_btnLogin"
-                            Grid.Row="4"
-                            HorizontalAlignment="Center"
-                            Command="{x:Bind ViewModel.LoginCommand}"
-                            Content="Đăng nhập"
-                            IsEnabled="{x:Bind ViewModel.IsLogingIn, Converter={StaticResource inverseBool}, Mode=OneWay}" />
+                            Margin="8"
+                            VerticalAlignment="Bottom">
+                            <HyperlinkButton HorizontalAlignment="Center" Content="Help" />
+                            <HyperlinkButton HorizontalAlignment="Center" Content="About" />
+                            <TextBlock HorizontalAlignment="Right" Text="2017" />
+                        </StackPanel>
                     </Grid>
-                    <StackPanel
-                        Grid.Row="2"
-                        Margin="8"
-                        VerticalAlignment="Bottom">
-                        <HyperlinkButton HorizontalAlignment="Center" Content="Help" />
-                        <HyperlinkButton HorizontalAlignment="Center" Content="About" />
-                        <TextBlock HorizontalAlignment="Right" Text="2017" />
-                    </StackPanel>
-                </Grid>
-
-            </PivotItem>
-        </Pivot>
-        <!--<controls:BladeView
-            x:Name="bladeView"
-            Margin="12"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch">
-            <controls:BladeItem
-                x:Name="mainBlade"
-                TitleBarVisibility="Collapsed">
-            </controls:BladeItem>
-            <controls:BladeItem Title="Help" />
-            <controls:BladeItem Title="About" />
-        </controls:BladeView>-->
+                </PivotItem>
+                <PivotItem Header="Help">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Text="Content" />
+                </PivotItem>
+                <PivotItem Header="About">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Text="Content" />
+                </PivotItem>
+            </Pivot>
+        </ScrollViewer>
     </Grid>
 </Page>
