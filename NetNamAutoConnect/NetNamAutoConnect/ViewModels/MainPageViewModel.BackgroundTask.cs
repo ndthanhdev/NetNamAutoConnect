@@ -21,7 +21,7 @@ namespace NetNamAutoConnect.ViewModels
                 if (currentState)
                 {
                     //unregister
-                    BackgroundTaskHelper.Unregister(typeof(NetNamAutoConnectRuntimeComponent.LoginBackgroundTask));
+                    await UnregisterLoginBackgroundTask();
                 }
                 else
                 {
@@ -48,6 +48,12 @@ namespace NetNamAutoConnect.ViewModels
         {
             await Task.Yield();
             BackgroundTaskHelper.Register(typeof(NetNamAutoConnectRuntimeComponent.LoginBackgroundTask), new SystemTrigger(SystemTriggerType.NetworkStateChange, false));
+        }
+
+        private async Task UnregisterLoginBackgroundTask()
+        {
+            await Task.Yield();
+            BackgroundTaskHelper.Unregister(typeof(NetNamAutoConnectRuntimeComponent.LoginBackgroundTask));
         }
     }
 }
