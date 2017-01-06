@@ -17,7 +17,6 @@ namespace NetNamAutoConnect.ViewModels
                 IsStarted = true;
                 /// Get state
                 var currentState = IsLoginBackgroundTaskRegistered();
-                await Task.Delay(2000);/// TODO: Remove this line
                 if (currentState)
                 {
                     //unregister
@@ -27,9 +26,6 @@ namespace NetNamAutoConnect.ViewModels
                 {
                     //register
                     await RegisterLoginBackgroundTask();
-#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-                    InnerLogin();
-#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                 }
                 IsStarted = IsLoginBackgroundTaskRegistered();
             }
@@ -47,8 +43,12 @@ namespace NetNamAutoConnect.ViewModels
         private async Task RegisterLoginBackgroundTask()
         {
             await Task.Yield();
-            BackgroundTaskHelper.Register(typeof(NetNamAutoConnectRuntimeComponent.LoginBackgroundTask), 
-                new SystemTrigger(SystemTriggerType.NetworkStateChange, false));
+            try
+            {
+                BackgroundTaskHelper.Register(typeof(NetNamAutoConnectRuntimeComponent.LoginBackgroundTask),
+    new SystemTrigger(SystemTriggerType.NetworkStateChange, false));
+            }
+            catch (Exception) { }
         }
 
         private async Task UnregisterLoginBackgroundTask()

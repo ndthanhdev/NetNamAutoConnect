@@ -9,7 +9,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:NetNamAutoConnect"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:myconverters="using:NetNamAutoConnect.Converters"
     x:Name="_page"
     mc:Ignorable="d">
     <Page.Resources>
@@ -17,7 +16,6 @@
             x:Key="inverseBool"
             FalseValue="True"
             TrueValue="False" />
-        <myconverters:GreaterThanZero x:Key="greaterThanZero" />
     </Page.Resources>
 
     <Grid x:Name="_mainGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">

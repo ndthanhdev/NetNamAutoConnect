@@ -1,7 +1,10 @@
-﻿using System;
+﻿using HtmlAgilityPack;
+using System;
 using System.Collections.Generic;
-
+using System.Linq;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Linq;
 using Windows.Web.Http;
 using Windows.Web.Http.Filters;
 
@@ -56,6 +59,7 @@ namespace NetNamAutoConnectLibrary
         {
             try
             {
+                await GetStatus();
                 await Task.Yield();
                 using (HttpClient client = new HttpClient())
                 {
@@ -64,7 +68,7 @@ namespace NetNamAutoConnectLibrary
                     var debug = await client.PostAsync(LOG_IN_URI, httpContent);
                     var result = await debug.Content.ReadAsStringAsync();
 #else
-                    await client.PostAsync(LOGIN_URI, httpContent);
+                    await client.PostAsync(LOG_IN_URI, httpContent);
 #endif
                 }
             }
@@ -94,6 +98,39 @@ namespace NetNamAutoConnectLibrary
             formData.Add("username", username);
             formData.Add("password", password);
             return new HttpFormUrlEncodedContent(formData);
+        }
+
+        // TODO: implement it
+        public static async Task<string> GetStatus()
+        {
+            await Task.Yield();
+            try
+            {
+                await Task.Yield();
+                using (var filter = new HttpBaseProtocolFilter())
+                {
+                    filter.AllowAutoRedirect = false;
+                    using (HttpClient client = new HttpClient(filter))
+                    {
+                        var response = await client.GetAsync(STATUS_URI);
+                        if (HttpStatusCode.Ok == response.StatusCode)
+                        {
+                            var responseContentRaw = await response.Content.ReadAsStringAsync();
+                            var responseContent = System.Net.WebUtility.HtmlDecode(responseContentRaw);
+                            //var doc = new HtmlDocument();
+                            //doc.LoadHtml(responseContent);
+                            
+
+                        }
+
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            return null;
         }
     }
 }

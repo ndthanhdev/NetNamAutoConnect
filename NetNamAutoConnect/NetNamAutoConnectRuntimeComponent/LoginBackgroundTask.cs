@@ -14,13 +14,20 @@ namespace NetNamAutoConnectRuntimeComponent
 
             await Task.Yield();
 
-            if (await WifiServices.IsConnectWithWifiNetNam() && !(await WifiServices.IsAuthenticated()))
+            var checkWifiTask = WifiServices.IsConnectWithWifiNetNam();
+            var checkAuthenticatedTask = WifiServices.IsAuthenticated();
+            await Task.WhenAll(checkWifiTask, checkAuthenticatedTask);
+            if (checkWifiTask.Result && !checkAuthenticatedTask.Result)
             {
                 var credential = CredentialLocker.Retrieving();
                 await WifiServices.Login(credential.UserName, credential.Password);
                 if (await WifiServices.IsAuthenticated())
                 {
                     await ToastServices.PopToast(ToastServices.GenerateLoggedInToastContent());
+                }
+                else
+                {
+                    await ToastServices.PopToast(ToastServices.GenerateLoggedInFailToastContent());
                 }
             }
 

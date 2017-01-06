@@ -42,5 +42,30 @@ namespace NetNamAutoConnectLibrary
             };
         }
 
+        public static ToastContent GenerateLoggedInFailToastContent()
+        {
+            return new ToastContent()
+            {
+                Scenario = ToastScenario.Default,
+                Visual = new ToastVisual()
+                {
+                    BindingGeneric = new ToastBindingGeneric()
+                    {
+                        Children =
+                        {
+                            new AdaptiveText()
+                            {
+                                Text = "NetNamAutoConnect"
+                            },
+                            new AdaptiveText()
+                            {
+                                Text = "Couldn't log in."
+                            },
+                        }
+                    }
+                }
+            };
+        }
+
     }
 }
