@@ -100,26 +100,29 @@
                             Grid.Row="2"
                             Margin="8"
                             VerticalAlignment="Bottom">
-                            <HyperlinkButton HorizontalAlignment="Center" Content="Help" />
-                            <HyperlinkButton HorizontalAlignment="Center" Content="About" />
-                            <TextBlock HorizontalAlignment="Right" Text="2017" />
+                            <HyperlinkButton HorizontalAlignment="Center" Content="Rate and review" />
+                            <TextBlock HorizontalAlignment="Right" Text="">
+                                <Run Text="{x:Bind ViewModel.Version.Major}" />
+                                <Run Text="." />
+                                <Run Text="{x:Bind ViewModel.Version.Minor}" />
+                                <Run Text="." />
+                                <Run Text="{x:Bind ViewModel.Version.Build}" />
+                            </TextBlock>
                         </StackPanel>
                     </Grid>
                 </PivotItem>
-                <PivotItem Header="Help">
-                    <TextBlock
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Text="Content" />
-                </PivotItem>
                 <PivotItem Header="About">
-                    <Grid>
-                        <TextBlock
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Text="Content" />
-                        <Button Click="Button_Click" Content="pop" />
-                    </Grid>
+                    <TextBlock Text="" TextWrapping="Wrap">
+                        <LineBreak />
+                        <Run>
+                            NetNamAutoConnect is a simple stupid window 10 app use to auto login when connect to WifiNetNam. And it's open source project.
+                        </Run>
+                        <LineBreak />
+                        <Run FontWeight="Bold" Text="3rd-party App ( app isn't developed by " />
+                        <Hyperlink NavigateUri="http://netnam.vn/">NetNam</Hyperlink>
+                        <Run>)</Run>
+                        <LineBreak />
+                    </TextBlock>
                 </PivotItem>
             </Pivot>
         </ScrollViewer>

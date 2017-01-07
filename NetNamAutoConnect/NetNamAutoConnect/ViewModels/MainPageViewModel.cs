@@ -1,12 +1,14 @@
 ﻿using NetNamAutoConnect.ViewModels.Base;
 using NetNamAutoConnectLibrary;
+using System;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
 using Windows.Security.Credentials;
 
 namespace NetNamAutoConnect.ViewModels
 {
     // TODO: localization
-    // TODO: Tile for disconnect
+    // TODO: Tile
     // TODO: show remind use time
     // TODO: Show password using UserConsentVerifier.RequestVerificationAsync("xin moi verify");
     // TODO: Using BitFlag to detect busy
@@ -18,6 +20,8 @@ namespace NetNamAutoConnect.ViewModels
         private bool _isStarting;
         private string _password;
         private string _userName;
+
+        private PackageVersion _version;
 
         public MainPageViewModel()
         {
@@ -74,6 +78,12 @@ namespace NetNamAutoConnect.ViewModels
             set { Set(ref _userName, value); }
         }
 
+        public PackageVersion Version
+        {
+            get { return _version; }
+            set { Set(ref _version, value); }
+        }
+
         private async Task InnerLoadCredential()
         {
             await Task.Yield();
@@ -100,13 +110,12 @@ namespace NetNamAutoConnect.ViewModels
                 IsLogingIn = true;
                 await InnerSaveCredential();
                 await WifiServices.Login(UserName, Password);
-                if(await WifiServices.IsAuthenticated())
+                if (await WifiServices.IsAuthenticated())
                 {
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                     ToastServices.PopToast(ToastServices.GenerateLoggedInToastContent());
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                 }
-
             }
             finally
             {
@@ -140,7 +149,16 @@ namespace NetNamAutoConnect.ViewModels
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             InnerLoadState();
             InnerLoadCredential();
+            InnerLoadAppInfor();
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+        }
+
+        private async Task InnerLoadAppInfor()
+        {
+            await Task.Yield();
+            Package package = Package.Current;
+            PackageId packageId = package.Id;
+            this.Version = packageId.Version;
         }
     }
 }

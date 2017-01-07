@@ -1,9 +1,12 @@
 ﻿using Microsoft.Toolkit.Uwp.Notifications;
 using NetNamAutoConnect.ViewModels;
+using System.Threading.Tasks;
 using Windows.UI.Notifications;
+using Windows.UI.StartScreen;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using System;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -28,31 +31,9 @@ namespace NetNamAutoConnect
             this.Focus(FocusState.Programmatic);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            var content = new ToastContent()
-            {                       
-                Scenario = ToastScenario.Default,
-                Visual = new ToastVisual()
-                {                                       
-                    BindingGeneric = new ToastBindingGeneric()
-                    {
-                        Children =
-                        {
-                            new AdaptiveText()
-                            {
-                                Text = "NetNamAutoConnect"
-                            },
-                            new AdaptiveText()
-                            {
-                                Text = "NetNamAutoConnect sent login request."
-                            },
-                        }
-                    }
-                }
-            };
-            var xml = content.GetXml();
-            ToastNotificationManager.CreateToastNotifier().Show(new ToastNotification(xml));
+           
         }
     }
 }
