@@ -138,4 +138,19 @@
   <data name="About run 2.Text" xml:space="preserve">
     <value>3rd-party App( app isn't developed by </value>
   </data>
+  <data name="Rate and review.Content" xml:space="preserve">
+    <value>Rate and review</value>
+  </data>
+  <data name="Note.Text" xml:space="preserve">
+    <value>Auto login is inaccurate working on PC in temporarily.</value>
+  </data>
+  <data name="Logged in" xml:space="preserve">
+    <value>You are logged in.</value>
+  </data>
+  <data name="Login fail" xml:space="preserve">
+    <value>Couldn't log in.</value>
+  </data>
+  <data name="Please input PIN to see password" xml:space="preserve">
+    <value>Please input PIN to see password.</value>
+  </data>
 </root>

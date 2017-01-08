@@ -7,6 +7,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using System;
+using Windows.Security.Credentials.UI;
+using Windows.Security.Credentials;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -28,7 +30,7 @@ namespace NetNamAutoConnect
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            this.Focus(FocusState.Programmatic);
+            this._tgbSetState.Focus(FocusState.Programmatic);
         }
     }
 }

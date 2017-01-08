@@ -138,4 +138,19 @@
   <data name="About run 2.Text" xml:space="preserve">
     <value>Ứng dụng bên thứ ba( không được phát triển bởi </value>
   </data>
+  <data name="Rate and review.Content" xml:space="preserve">
+    <value>Đánh giá và góp ý</value>
+  </data>
+  <data name="Note.Text" xml:space="preserve">
+    <value>Đăng nhập tự  động tạm thời hoạt động không ổn định trên PC.</value>
+  </data>
+  <data name="Logged in" xml:space="preserve">
+    <value>Đã đăng nhập.</value>
+  </data>
+  <data name="Login fail" xml:space="preserve">
+    <value>Không thể đăng nhập.</value>
+  </data>
+  <data name="Please input PIN to see password" xml:space="preserve">
+    <value>Hãy nhập mã PIN để xem mật khẩu.</value>
+  </data>
 </root>

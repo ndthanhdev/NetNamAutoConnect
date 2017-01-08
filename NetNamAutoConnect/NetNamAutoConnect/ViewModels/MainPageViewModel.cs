@@ -4,6 +4,8 @@ using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Security.Credentials;
+using Windows.Security.Credentials.UI;
+using Windows.UI.Xaml.Controls;
 
 namespace NetNamAutoConnect.ViewModels
 {
@@ -20,6 +22,15 @@ namespace NetNamAutoConnect.ViewModels
         private bool _isStarting;
         private string _password;
         private string _userName;
+
+        private bool _isShowPassword = false;
+
+        public bool IsShowPassword
+        {
+            get { return _isShowPassword; }
+            set { Set(ref _isShowPassword, value); }
+        }
+
 
         private PackageVersion _version;
 
@@ -65,6 +76,39 @@ namespace NetNamAutoConnect.ViewModels
             await Task.Yield();
             await InnerLogout();
         }, () => !IsLogingOut);
+
+        public DelegateCommand ChangedPasswordRevealMode => new DelegateCommand(async () =>
+        {
+            if (IsShowPassword)
+            {
+                IsShowPassword = false;
+            }
+            else
+            {
+                var availabel = await UserConsentVerifier.CheckAvailabilityAsync();
+                if (availabel == UserConsentVerifierAvailability.Available)
+                {
+                    var result = await UserConsentVerifier.RequestVerificationAsync(Localization.GetLocalString("Please input PIN to see password"));
+                    if (result == UserConsentVerificationResult.Verified)
+                    {
+                        IsShowPassword = true;
+                    }
+                    else
+                    {
+                        IsShowPassword = false;
+                    }
+                }
+                else if (availabel == UserConsentVerifierAvailability.NotConfiguredForUser || availabel == UserConsentVerifierAvailability.DeviceNotPresent)
+                {
+                    IsShowPassword = true;
+                }
+                else
+                {
+                    IsShowPassword = false;
+                    // TODO : for else state
+                }
+            }
+        });
 
         public string Password
         {

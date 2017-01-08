@@ -16,121 +16,151 @@
             x:Key="inverseBool"
             FalseValue="True"
             TrueValue="False" />
+        <converters:BoolToObjectConverter
+            x:Key="Bool2PasswordRevealMode"
+            FalseValue="0"
+            TrueValue="2" />
+
     </Page.Resources>
 
     <Grid x:Name="_mainGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <Pivot>
-                <PivotItem x:Uid="Connect" Header="Connect">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="6*" />
-                            <RowDefinition Height="2*" />
-                        </Grid.RowDefinitions>
-
-                        <!--  Main Content  -->
-                        <Grid Grid.Row="1">
+            <Grid Margin="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Pivot>
+                    <PivotItem x:Uid="Connect" Header="Connect">
+                        <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="64" />
-                                <RowDefinition Height="64" />
-                                <RowDefinition Height="64" />
-                                <RowDefinition />
-                                <RowDefinition Height="64" />
+                                <RowDefinition Height="2*" />
+                                <RowDefinition Height="6*" />
+                                <RowDefinition Height="2*" />
                             </Grid.RowDefinitions>
+                            <!--  Main Content  -->
+                            <Grid Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
 
-                            <TextBox
-                                x:Name="_tbUsername"
-                                Margin="32,16,32,16"
-                                IsEnabled="{x:Bind ViewModel.IsStarted, Converter={StaticResource inverseBool}, Mode=OneWay}"
-                                PlaceholderText="Username"
-                                Text="{x:Bind ViewModel.UserName, Mode=TwoWay}" />
-                            <Grid Grid.Row="1" Margin="32,16,32,16">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition Width="48" />
-                                </Grid.ColumnDefinitions>
-                                <PasswordBox
-                                    x:Name="_pbPassword"
-                                    HorizontalAlignment="Stretch"
+                                <TextBox
+                                    x:Name="_tbUsername"
+                                    Margin="32,16,32,16"
                                     IsEnabled="{x:Bind ViewModel.IsStarted, Converter={StaticResource inverseBool}, Mode=OneWay}"
-                                    Password="{x:Bind ViewModel.Password, Mode=TwoWay}"
-                                    PasswordRevealMode="Peek"
-                                    PlaceholderText="Password" />
-                                <ToggleButton
-                                    Grid.Column="1"
-                                    Width="48"
-                                    Height="32"
-                                    IsEnabled="False">
-                                    <SymbolIcon
+                                    PlaceholderText="Username"
+                                    Text="{x:Bind ViewModel.UserName, Mode=TwoWay}" />
+                                <Grid Grid.Row="1" Margin="32,16,32,16">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Button
+                                        Width="48"
+                                        Height="32"
+                                        Command="{x:Bind ViewModel.ChangedPasswordRevealMode}">
+                                        <SymbolIcon
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Stretch"
+                                            Symbol="View" />
+                                    </Button>
+
+                                    <PasswordBox
+                                        Grid.Column="1"
                                         HorizontalAlignment="Stretch"
-                                        VerticalAlignment="Stretch"
-                                        Symbol="View" />
-                                </ToggleButton>
+                                        IsEnabled="{x:Bind ViewModel.IsStarted, Converter={StaticResource inverseBool}, Mode=OneWay}"
+                                        Password="{x:Bind ViewModel.Password, Mode=TwoWay}"
+                                        PasswordRevealMode="{x:Bind ViewModel.IsShowPassword, Converter={StaticResource Bool2PasswordRevealMode}, Mode=OneWay}"
+                                        PlaceholderText="Password" />
+                                </Grid>
+
+                                <ToggleButton
+                                    x:Name="_tgbSetState"
+                                    x:Uid="Turn on auto login"
+                                    Grid.Row="2"
+                                    Margin="16"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Command="{x:Bind ViewModel.SwitchStateCommand}"
+                                    Content="Turn on auto login"
+                                    IsChecked="{x:Bind ViewModel.IsStarted, Mode=OneWay}"
+                                    IsEnabled="{x:Bind ViewModel.IsStarting, Converter={StaticResource inverseBool}, Mode=OneWay}" />
+
+
+                                <Button
+                                    x:Name="_btnLogout"
+                                    x:Uid="Logout"
+                                    Grid.Row="3"
+                                    Margin="16"
+                                    HorizontalAlignment="Center"
+                                    Background="Red"
+                                    Command="{x:Bind ViewModel.LogoutCommand}"
+                                    Content="Logout"
+                                    IsEnabled="{x:Bind ViewModel.IsLogingOut, Converter={StaticResource inverseBool}, Mode=OneWay}" />
+
+                                <Button
+                                    x:Name="_btnLogin"
+                                    x:Uid="Login"
+                                    Grid.Row="4"
+                                    Margin="16"
+                                    HorizontalAlignment="Center"
+                                    Command="{x:Bind ViewModel.LoginCommand}"
+                                    Content="Login"
+                                    IsEnabled="{x:Bind ViewModel.IsLogingIn, Converter={StaticResource inverseBool}, Mode=OneWay}" />
                             </Grid>
 
-                            <ToggleButton
-                                x:Name="_tgbSetState"
-                                x:Uid="Turn on auto login"
+                            <StackPanel
                                 Grid.Row="2"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Command="{x:Bind ViewModel.SwitchStateCommand}"
-                                Content="Turn on auto login"
-                                IsChecked="{x:Bind ViewModel.IsStarted, Mode=OneWay}"
-                                IsEnabled="{x:Bind ViewModel.IsStarting, Converter={StaticResource inverseBool}, Mode=OneWay}" />
-
-                            <Button
-                                x:Name="_btnLogout"
-                                x:Uid="Logout"
-                                Grid.Row="3"
-                                HorizontalAlignment="Center"
-                                Background="Red"
-                                Command="{x:Bind ViewModel.LogoutCommand}"
-                                Content="Logout"
-                                IsEnabled="{x:Bind ViewModel.IsLogingOut, Converter={StaticResource inverseBool}, Mode=OneWay}" />
-
-                            <Button
-                                x:Name="_btnLogin"
-                                x:Uid="Login"
-                                Grid.Row="4"
-                                HorizontalAlignment="Center"
-                                Command="{x:Bind ViewModel.LoginCommand}"
-                                Content="Login"
-                                IsEnabled="{x:Bind ViewModel.IsLogingIn, Converter={StaticResource inverseBool}, Mode=OneWay}" />
+                                Margin="8"
+                                VerticalAlignment="Bottom">
+                                <TextBlock
+                                    x:Uid="Note"
+                                    Foreground="Red"
+                                    Text="Auto login is inaccurate working on PC in temporarily."
+                                    TextAlignment="Center"
+                                    TextWrapping="Wrap" />
+                                <HyperlinkButton
+                                    x:Uid="Rate and review"
+                                    HorizontalAlignment="Center"
+                                    Content="Rate and review"
+                                    NavigateUri="https://www.microsoft.com/store/apps/9p7dpz8jkj6z" />
+                            </StackPanel>
                         </Grid>
-                        <StackPanel
-                            Grid.Row="2"
-                            Margin="8"
-                            VerticalAlignment="Bottom">
-                            <HyperlinkButton HorizontalAlignment="Center" Content="Rate and review" />
-                            <TextBlock HorizontalAlignment="Right" Text="">
-                                <Run Text="{x:Bind ViewModel.Version.Major}" />
-                                <Run Text="." />
-                                <Run Text="{x:Bind ViewModel.Version.Minor}" />
-                                <Run Text="." />
-                                <Run Text="{x:Bind ViewModel.Version.Build}" />
-                            </TextBlock>
-                        </StackPanel>
-                    </Grid>
-                </PivotItem>
-                <PivotItem x:Uid="About" Header="About">
-                    <TextBlock Text="" TextWrapping="Wrap">
-                        <LineBreak />
-                        <Run x:Uid="About run 1">
-                            NetNamAutoConnect is a simple stupid window 10 app use to auto login when connect to WifiNetNam. And it's open source project.
-                        </Run>
-                        <LineBreak />
-                        <Run
-                            x:Uid="About run 2"
-                            FontWeight="Bold"
-                            Text="3rd-party App ( app isn't developed by " />
-                        <Hyperlink NavigateUri="http://netnam.vn/">NetNam</Hyperlink>
-                        <Run>)</Run>
-                        <LineBreak />
-                    </TextBlock>
-                </PivotItem>
-            </Pivot>
+                    </PivotItem>
+                    <PivotItem x:Uid="About" Header="About">
+                        <TextBlock Text="" TextWrapping="Wrap">
+                            <LineBreak />
+                            <Run x:Uid="About run 1">
+                                NetNamAutoConnect is a simple stupid window 10 app use to auto login when connect to WifiNetNam. And it's open source project.
+                            </Run>
+                            <LineBreak />
+                            <Run
+                                x:Uid="About run 2"
+                                FontWeight="Bold"
+                                Text="3rd-party App ( app isn't developed by " />
+                            <Hyperlink NavigateUri="http://netnam.vn/">NetNam</Hyperlink>
+                            <Run>)</Run>
+                            <LineBreak />
+                        </TextBlock>
+                    </PivotItem>
+                </Pivot>
+                <TextBlock
+                    Grid.Row="1"
+                    HorizontalAlignment="Right"
+                    FontSize="13"
+                    Foreground="SlateGray"
+                    Text="">
+                    <Run Text="{x:Bind ViewModel.Version.Major}" />
+                    <Run Text="." />
+                    <Run Text="{x:Bind ViewModel.Version.Minor}" />
+                    <Run Text="." />
+                    <Run Text="{x:Bind ViewModel.Version.Build}" />
+                </TextBlock>
+            </Grid>
         </ScrollViewer>
     </Grid>
 </Page>

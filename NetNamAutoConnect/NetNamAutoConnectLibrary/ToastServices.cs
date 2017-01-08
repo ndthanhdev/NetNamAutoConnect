@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
 using Windows.UI.Notifications;
 
 namespace NetNamAutoConnectLibrary
@@ -34,7 +35,7 @@ namespace NetNamAutoConnectLibrary
                             },
                             new AdaptiveText()
                             {
-                                Text = "You are logged in."
+                                Text = Localization.GetLocalString("Logged in")
                             },
                         }
                     }
@@ -59,13 +60,12 @@ namespace NetNamAutoConnectLibrary
                             },
                             new AdaptiveText()
                             {
-                                Text = "Couldn't log in."
+                                Text = Localization.GetLocalString("Login fail")
                             },
                         }
                     }
                 }
             };
         }
-
     }
 }
