@@ -25,7 +25,7 @@
 
     <Grid x:Name="_mainGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <Grid Margin="4">
+            <Grid Margin="4,0,4,4">
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition Height="Auto" />
@@ -38,6 +38,13 @@
                                 <RowDefinition Height="6*" />
                                 <RowDefinition Height="2*" />
                             </Grid.RowDefinitions>
+
+                            <Image
+                                Width="72"
+                                HorizontalAlignment="Center"
+                                Source="/Assets/StoreLogo.scale-200.png"
+                                Stretch="Uniform" />
+
                             <!--  Main Content  -->
                             <Grid Grid.Row="1">
                                 <Grid.RowDefinitions>
