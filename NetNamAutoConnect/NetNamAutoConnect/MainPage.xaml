@@ -21,7 +21,7 @@
     <Grid x:Name="_mainGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <Pivot>
-                <PivotItem Header="Connect">
+                <PivotItem x:Uid="Connect" Header="Connect">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="2*" />
@@ -71,6 +71,7 @@
 
                             <ToggleButton
                                 x:Name="_tgbSetState"
+                                x:Uid="Turn on auto login"
                                 Grid.Row="2"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
@@ -81,19 +82,21 @@
 
                             <Button
                                 x:Name="_btnLogout"
+                                x:Uid="Logout"
                                 Grid.Row="3"
                                 HorizontalAlignment="Center"
                                 Background="Red"
                                 Command="{x:Bind ViewModel.LogoutCommand}"
-                                Content="Đăng xuất"
+                                Content="Logout"
                                 IsEnabled="{x:Bind ViewModel.IsLogingOut, Converter={StaticResource inverseBool}, Mode=OneWay}" />
 
                             <Button
                                 x:Name="_btnLogin"
+                                x:Uid="Login"
                                 Grid.Row="4"
                                 HorizontalAlignment="Center"
                                 Command="{x:Bind ViewModel.LoginCommand}"
-                                Content="Đăng nhập"
+                                Content="Login"
                                 IsEnabled="{x:Bind ViewModel.IsLogingIn, Converter={StaticResource inverseBool}, Mode=OneWay}" />
                         </Grid>
                         <StackPanel
@@ -111,14 +114,17 @@
                         </StackPanel>
                     </Grid>
                 </PivotItem>
-                <PivotItem Header="About">
+                <PivotItem x:Uid="About" Header="About">
                     <TextBlock Text="" TextWrapping="Wrap">
                         <LineBreak />
-                        <Run>
+                        <Run x:Uid="About run 1">
                             NetNamAutoConnect is a simple stupid window 10 app use to auto login when connect to WifiNetNam. And it's open source project.
                         </Run>
                         <LineBreak />
-                        <Run FontWeight="Bold" Text="3rd-party App ( app isn't developed by " />
+                        <Run
+                            x:Uid="About run 2"
+                            FontWeight="Bold"
+                            Text="3rd-party App ( app isn't developed by " />
                         <Hyperlink NavigateUri="http://netnam.vn/">NetNam</Hyperlink>
                         <Run>)</Run>
                         <LineBreak />

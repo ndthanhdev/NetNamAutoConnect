@@ -30,10 +30,5 @@ namespace NetNamAutoConnect
             base.OnNavigatedTo(e);
             this.Focus(FocusState.Programmatic);
         }
-
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
     }
 }
