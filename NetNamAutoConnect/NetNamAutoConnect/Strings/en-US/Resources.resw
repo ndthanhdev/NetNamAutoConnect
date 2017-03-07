@@ -133,7 +133,7 @@
     <value>About</value>
   </data>
   <data name="About run 1.Text" xml:space="preserve">
-    <value>NetNamAutoConnect is a simple stupid Window 10 app use to auto login when connect to WifiNetNam. And it's open source project.</value>
+    <value>NetNamAutoConnect is a simple stupid Window 10 app use to auto login when connect to WifiNetNam. And it's a open source project.</value>
   </data>
   <data name="About run 2.Text" xml:space="preserve">
     <value>3rd-party App( app isn't developed by </value>
